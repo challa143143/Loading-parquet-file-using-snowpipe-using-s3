@@ -1,0 +1,1 @@
+# Loading-parquet-file-using-snowpipe-using-s3
