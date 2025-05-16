@@ -9,6 +9,11 @@ Once the snowpipe created it went execute existing files it will fetch new files
 And we have to add metadata filename, metadata file_row_number,timestamp columns while creating snowpipe to get from which file it is fetching from matadata
 
 
+create or replace table db.public.healthcare(
+
+health_cols variant default NULL
+
+);
 
 
 
@@ -100,9 +105,10 @@ create or replace stage db.public.ext_parquet_stage
 
 
 
--------copy into healthcare_parquet
-
-from @demo_db.public.ext_parquet_stage;
+copy into HEALTHCARE_PARQUET
+from @db.public.ext_parquet_stage
+file_format = (TYPE = 'parquet')
+MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 
 
 
